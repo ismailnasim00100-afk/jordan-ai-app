@@ -1,0 +1,2964 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JORDAN AI | الذكاء الاصطناعي للأعمال</title>
+
+<meta name="description"
+content="JORDAN AI — منصة الذكاء الاصطناعي للأعمال">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+:root{
+    --black:#030305;
+    --dark:#08080c;
+    --card:#101015;
+    --card2:#15151c;
+    --red:#d71920;
+    --red2:#ff3138;
+    --gold:#d4af37;
+    --white:#fff;
+    --gray:#92929b;
+    --green:#28d17c;
+    --border:rgba(255,255,255,.09);
+}
+
+body{
+    font-family:Arial,Tahoma,sans-serif;
+    background:#030305;
+    color:white;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-5;
+
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,.55),
+            rgba(0,0,0,.82)
+        ),
+        url("jordan-bg.png");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-4;
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(255,30,40,.10),
+            transparent 40%
+        ),
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(0,0,0,.45)
+        );
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+header{
+    position:fixed;
+    top:0;
+    right:0;
+    left:0;
+    height:76px;
+
+    z-index:3000;
+
+    background:rgba(3,3,5,.82);
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(215,25,32,.25);
+}
+
+.nav{
+    width:min(1250px,94%);
+    height:100%;
+    margin:auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    color:white;
+    text-decoration:none;
+}
+
+.logo-symbol{
+    width:45px;
+    height:45px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:13px;
+
+    color:var(--gold);
+    font-size:18px;
+    font-weight:900;
+
+    background:linear-gradient(
+        145deg,
+        #1b1b1e,
+        #050507
+    );
+
+    border:1px solid rgba(212,175,55,.45);
+
+    box-shadow:
+        0 0 20px rgba(212,175,55,.05);
+}
+
+.logo-text{
+    font-size:20px;
+    font-weight:900;
+}
+
+.logo-text span{
+    color:var(--red2);
+}
+
+.logo-small{
+    display:block;
+    color:var(--gold);
+    font-size:9px;
+    margin-top:3px;
+}
+
+nav{
+    display:flex;
+    gap:25px;
+}
+
+nav a{
+    color:#ccc;
+    text-decoration:none;
+    font-size:14px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:var(--red2);
+}
+
+.nav-buttons{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.btn{
+    border:0;
+    cursor:pointer;
+    font-family:inherit;
+}
+
+.btn-login{
+    padding:11px 17px;
+
+    color:white;
+
+    background:#101014;
+
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:10px;
+}
+
+.btn-start{
+    padding:12px 20px;
+
+    color:white;
+    font-weight:bold;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--red),
+            var(--red2)
+        );
+
+    border-radius:10px;
+
+    box-shadow:
+        0 8px 30px rgba(215,25,32,.18);
+}
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero{
+    min-height:100vh;
+
+    padding:
+        145px 20px
+        90px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+}
+
+.hero-content{
+    width:min(1000px,100%);
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:10px 18px;
+
+    border-radius:50px;
+
+    color:#ddd;
+
+    background:rgba(215,25,32,.08);
+
+    border:1px solid rgba(215,25,32,.35);
+
+    margin-bottom:25px;
+}
+
+.hero-logo{
+    font-size:clamp(48px,9vw,92px);
+    font-weight:1000;
+    letter-spacing:4px;
+}
+
+.hero-logo span{
+    color:var(--red2);
+}
+
+.hero-sublogo{
+    margin-top:14px;
+
+    color:var(--gold);
+
+    font-size:20px;
+    font-weight:bold;
+}
+
+.hero h1{
+    margin-top:40px;
+
+    font-size:
+        clamp(30px,6vw,60px);
+
+    line-height:1.3;
+}
+
+.hero h1 span{
+    color:var(--red2);
+}
+
+.hero-description{
+    max-width:720px;
+
+    margin:
+        25px auto 0;
+
+    color:#aaa;
+
+    font-size:17px;
+    line-height:2;
+}
+
+.hero-buttons{
+    margin-top:35px;
+
+    display:flex;
+    justify-content:center;
+    gap:14px;
+
+    flex-wrap:wrap;
+}
+
+.main-btn,
+.secondary-btn{
+    padding:16px 28px;
+
+    border-radius:12px;
+
+    font-family:inherit;
+    font-size:15px;
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.main-btn{
+    color:white;
+    border:0;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--red),
+            var(--red2)
+        );
+
+    box-shadow:
+        0 12px 35px
+        rgba(215,25,32,.22);
+}
+
+.secondary-btn{
+    color:white;
+
+    background:#101014;
+
+    border:1px solid rgba(255,255,255,.14);
+}
+
+.made-jordan{
+    margin-top:22px;
+
+    color:#888;
+    font-size:13px;
+}
+
+.made-jordan strong{
+    color:var(--gold);
+}
+
+/* =========================================
+   FEATURES
+========================================= */
+
+.features{
+    width:min(1150px,92%);
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:
+        repeat(5,1fr);
+
+    gap:13px;
+}
+
+.feature{
+    padding:25px 15px;
+
+    text-align:center;
+
+    background:
+        rgba(12,12,17,.82);
+
+    border:
+        1px solid
+        rgba(215,25,32,.16);
+
+    border-radius:16px;
+
+    backdrop-filter:blur(10px);
+
+    transition:.3s;
+}
+
+.feature:hover{
+    transform:translateY(-5px);
+
+    border-color:
+        rgba(215,25,32,.55);
+}
+
+.feature-icon{
+    font-size:28px;
+    margin-bottom:12px;
+}
+
+.feature h3{
+    font-size:14px;
+    margin-bottom:8px;
+}
+
+.feature p{
+    color:#777;
+    font-size:11px;
+}
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.section{
+    width:min(1100px,92%);
+    margin:auto;
+
+    padding:100px 0;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.section-title .small{
+    color:var(--red2);
+    font-size:13px;
+    font-weight:bold;
+}
+
+.section-title h2{
+    margin-top:10px;
+
+    font-size:
+        clamp(28px,5vw,42px);
+}
+
+.section-title p{
+    margin-top:12px;
+    color:#888;
+}
+
+/* =========================================
+   PRICING
+========================================= */
+
+.pricing{
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    gap:15px;
+}
+
+.price-card{
+    padding:28px 20px;
+
+    background:
+        rgba(13,13,18,.92);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    border-radius:18px;
+
+    text-align:center;
+
+    transition:.3s;
+}
+
+.price-card:hover{
+    transform:translateY(-5px);
+}
+
+.price-card.featured{
+    border-color:
+        rgba(215,25,32,.7);
+
+    box-shadow:
+        0 0 40px
+        rgba(215,25,32,.10);
+}
+
+.price-card h3{
+    font-size:19px;
+}
+
+.price{
+    margin:20px 0;
+
+    font-size:34px;
+    font-weight:bold;
+}
+
+.price small{
+    color:#777;
+    font-size:11px;
+}
+
+.price-card ul{
+    list-style:none;
+
+    color:#aaa;
+
+    line-height:2.3;
+
+    font-size:12px;
+}
+
+.price-button{
+    width:100%;
+
+    margin-top:18px;
+
+    padding:12px;
+
+    border:0;
+    border-radius:9px;
+
+    color:white;
+
+    background:#17171d;
+
+    cursor:pointer;
+    font-family:inherit;
+}
+
+.featured .price-button{
+    background:var(--red);
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer{
+    margin-top:50px;
+
+    padding:40px 20px;
+
+    text-align:center;
+
+    color:#777;
+
+    font-size:12px;
+
+    border-top:
+        1px solid
+        rgba(215,25,32,.25);
+}
+
+footer strong{
+    color:white;
+}
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+
+    z-index:7000;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        rgba(0,0,0,.82);
+
+    backdrop-filter:blur(14px);
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(430px,100%);
+
+    padding:30px;
+
+    background:#0d0d12;
+
+    border:
+        1px solid
+        rgba(215,25,32,.38);
+
+    border-radius:20px;
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.7);
+}
+
+.modal-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:25px;
+}
+
+.modal-header h2{
+    font-size:24px;
+}
+
+.close{
+    width:35px;
+    height:35px;
+
+    border:0;
+    border-radius:50%;
+
+    background:#18181e;
+
+    color:white;
+
+    cursor:pointer;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+
+    margin-bottom:7px;
+
+    color:#aaa;
+
+    font-size:13px;
+}
+
+.form-group input{
+    width:100%;
+
+    padding:14px;
+
+    background:#08080b;
+
+    color:white;
+
+    border:
+        1px solid
+        rgba(255,255,255,.10);
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-family:inherit;
+}
+
+.form-group input:focus{
+    border-color:var(--red);
+}
+
+.form-submit{
+    width:100%;
+
+    padding:14px;
+
+    margin-top:8px;
+
+    border:0;
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--red),
+            var(--red2)
+        );
+
+    color:white;
+
+    font-family:inherit;
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.form-switch{
+    margin-top:18px;
+
+    text-align:center;
+
+    color:#777;
+
+    font-size:13px;
+}
+
+.form-switch button{
+    border:0;
+
+    background:none;
+
+    color:var(--red2);
+
+    cursor:pointer;
+
+    font-family:inherit;
+}
+
+.form-message{
+    display:none;
+
+    margin-bottom:15px;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    background:
+        rgba(215,25,32,.10);
+
+    border:
+        1px solid
+        rgba(215,25,32,.25);
+
+    color:#ff9b9b;
+
+    font-size:13px;
+
+    line-height:1.7;
+}
+
+.form-message.show{
+    display:block;
+}
+
+/* =========================================
+   OWNER DASHBOARD
+========================================= */
+
+#ownerDashboard{
+    display:none;
+
+    min-height:100vh;
+
+    padding-top:76px;
+
+    background:
+        rgba(3,3,5,.94);
+}
+
+#ownerDashboard.show{
+    display:block;
+}
+
+.owner-layout{
+    display:grid;
+
+    grid-template-columns:
+        250px 1fr;
+
+    min-height:
+        calc(100vh - 76px);
+}
+
+/* SIDEBAR */
+
+.owner-sidebar{
+    padding:25px 15px;
+
+    background:
+        rgba(8,8,12,.97);
+
+    border-left:
+        1px solid
+        rgba(255,255,255,.07);
+
+    position:sticky;
+
+    top:76px;
+
+    height:
+        calc(100vh - 76px);
+}
+
+.owner-brand{
+    padding:15px;
+
+    margin-bottom:20px;
+
+    border-radius:14px;
+
+    background:#111116;
+
+    border:
+        1px solid
+        rgba(212,175,55,.18);
+}
+
+.owner-brand strong{
+    display:block;
+
+    font-size:18px;
+}
+
+.owner-brand span{
+    display:block;
+
+    margin-top:5px;
+
+    color:var(--gold);
+
+    font-size:11px;
+}
+
+.owner-menu{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:7px;
+}
+
+.owner-menu button{
+    width:100%;
+
+    padding:13px 14px;
+
+    text-align:right;
+
+    border:0;
+
+    border-radius:11px;
+
+    background:transparent;
+
+    color:#999;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    transition:.25s;
+}
+
+.owner-menu button:hover{
+    background:#15151b;
+    color:white;
+}
+
+.owner-menu button.active{
+    background:
+        linear-gradient(
+            90deg,
+            rgba(215,25,32,.20),
+            rgba(215,25,32,.05)
+        );
+
+    color:white;
+
+    border-right:
+        3px solid
+        var(--red2);
+}
+
+/* OWNER MAIN */
+
+.owner-main{
+    padding:35px;
+
+    min-width:0;
+}
+
+.owner-topbar{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin-bottom:30px;
+}
+
+.owner-topbar h1{
+    font-size:30px;
+}
+
+.owner-topbar p{
+    margin-top:7px;
+
+    color:#777;
+
+    font-size:13px;
+}
+
+.owner-actions{
+    display:flex;
+
+    gap:8px;
+}
+
+.owner-btn{
+    padding:11px 15px;
+
+    border-radius:10px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.10);
+
+    background:#111116;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-family:inherit;
+}
+
+.owner-btn.red{
+    background:var(--red);
+    border-color:var(--red);
+}
+
+/* OWNER PAGES */
+
+.owner-page{
+    display:none;
+}
+
+.owner-page.active{
+    display:block;
+}
+
+/* STAT CARDS */
+
+.owner-stats{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:15px;
+
+    margin-bottom:20px;
+}
+
+.owner-stat{
+    padding:22px;
+
+    border-radius:16px;
+
+    background:
+        rgba(15,15,21,.92);
+
+    border:
+        1px solid
+        rgba(255,255,255,.07);
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.owner-stat::after{
+    content:"";
+
+    position:absolute;
+
+    width:80px;
+    height:80px;
+
+    left:-25px;
+    bottom:-30px;
+
+    background:
+        rgba(215,25,32,.08);
+
+    border-radius:50%;
+}
+
+.owner-stat .icon{
+    font-size:25px;
+}
+
+.owner-stat strong{
+    display:block;
+
+    margin-top:13px;
+
+    font-size:27px;
+}
+
+.owner-stat span{
+    display:block;
+
+    margin-top:5px;
+
+    color:#777;
+
+    font-size:12px;
+}
+
+.owner-grid{
+    display:grid;
+
+    grid-template-columns:
+        2fr 1fr;
+
+    gap:18px;
+}
+
+.owner-card{
+    padding:23px;
+
+    border-radius:17px;
+
+    background:
+        rgba(15,15,21,.92);
+
+    border:
+        1px solid
+        rgba(255,255,255,.07);
+}
+
+.owner-card h2{
+    margin-bottom:18px;
+
+    font-size:18px;
+}
+
+.owner-card h3{
+    margin-bottom:15px;
+}
+
+/* TABLE */
+
+.table-wrap{
+    width:100%;
+
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+
+    border-collapse:collapse;
+
+    min-width:650px;
+}
+
+th,
+td{
+    padding:13px 10px;
+
+    text-align:right;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.06);
+
+    font-size:12px;
+}
+
+th{
+    color:#888;
+    font-weight:normal;
+}
+
+td{
+    color:#ddd;
+}
+
+.status{
+    display:inline-block;
+
+    padding:5px 9px;
+
+    border-radius:50px;
+
+    font-size:10px;
+}
+
+.status.green{
+    color:#6ff0a8;
+
+    background:
+        rgba(40,209,124,.10);
+}
+
+.status.red{
+    color:#ff8c8c;
+
+    background:
+        rgba(215,25,32,.10);
+}
+
+.status.gold{
+    color:#e5c75a;
+
+    background:
+        rgba(212,175,55,.10);
+}
+
+/* QUICK ACTIONS */
+
+.quick-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:10px;
+}
+
+.quick{
+    padding:17px;
+
+    border-radius:12px;
+
+    background:#15151b;
+
+    color:white;
+
+    border:
+        1px solid
+        rgba(255,255,255,.06);
+
+    cursor:pointer;
+
+    text-align:right;
+
+    font-family:inherit;
+}
+
+.quick:hover{
+    border-color:
+        rgba(215,25,32,.45);
+}
+
+/* PLAN */
+
+.plan-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    gap:12px;
+}
+
+.plan-box{
+    padding:18px;
+
+    text-align:center;
+
+    background:#111116;
+
+    border:
+        1px solid
+        rgba(255,255,255,.06);
+
+    border-radius:13px;
+}
+
+.plan-box strong{
+    display:block;
+
+    margin-top:8px;
+
+    font-size:20px;
+}
+
+.plan-box span{
+    color:#777;
+
+    font-size:11px;
+}
+
+/* SETTINGS */
+
+.settings-list{
+    display:grid;
+
+    gap:10px;
+}
+
+.setting{
+    padding:18px;
+
+    background:#15151b;
+
+    border-radius:12px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+}
+
+.setting span{
+    color:#888;
+
+    font-size:12px;
+}
+
+/* =========================================
+   TOAST
+========================================= */
+
+.toast{
+    position:fixed;
+
+    bottom:25px;
+    right:25px;
+
+    z-index:10000;
+
+    max-width:350px;
+
+    padding:15px 20px;
+
+    border-radius:12px;
+
+    background:#15151b;
+
+    border:
+        1px solid
+        rgba(215,25,32,.4);
+
+    color:white;
+
+    display:none;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.5);
+}
+
+.toast.show{
+    display:block;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:1000px){
+
+    nav{
+        display:none;
+    }
+
+    .features{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .features .feature:last-child{
+        grid-column:span 2;
+    }
+
+    .pricing{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .pricing .price-card:last-child{
+        grid-column:span 2;
+    }
+
+    .owner-layout{
+        grid-template-columns:1fr;
+    }
+
+    .owner-sidebar{
+        position:relative;
+
+        top:auto;
+
+        height:auto;
+
+        border-left:0;
+
+        border-bottom:
+            1px solid
+            rgba(255,255,255,.07);
+    }
+
+    .owner-menu{
+        display:grid;
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .owner-stats{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .owner-grid{
+        grid-template-columns:1fr;
+    }
+
+    .plan-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+
+    header{
+        height:68px;
+    }
+
+    .nav{
+        width:94%;
+    }
+
+    .logo-text{
+        font-size:16px;
+    }
+
+    .logo-small{
+        display:none;
+    }
+
+    .btn-login{
+        padding:9px 11px;
+        font-size:11px;
+    }
+
+    .btn-start{
+        padding:10px 12px;
+        font-size:11px;
+    }
+
+    .hero{
+        padding-top:120px;
+    }
+
+    .features{
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .pricing{
+        grid-template-columns:1fr;
+    }
+
+    .pricing .price-card:last-child{
+        grid-column:auto;
+    }
+
+    .owner-main{
+        padding:20px 14px;
+    }
+
+    .owner-topbar{
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+    .owner-topbar h1{
+        font-size:25px;
+    }
+
+    .owner-stats{
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:9px;
+    }
+
+    .owner-stat{
+        padding:16px;
+    }
+
+    .owner-stat strong{
+        font-size:21px;
+    }
+
+    .owner-menu{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .plan-grid{
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .toast{
+        right:12px;
+        left:12px;
+        bottom:15px;
+        max-width:none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<header id="mainHeader">
+
+<div class="nav">
+
+<a href="#" class="logo">
+
+<div class="logo-symbol">
+JA
+</div>
+
+<div>
+<div class="logo-text">
+JORDAN <span>AI</span>
+</div>
+
+<span class="logo-small">
+الذكاء الاصطناعي للأعمال
+</span>
+</div>
+
+</a>
+
+<nav>
+
+<a href="#home">الرئيسية</a>
+<a href="#features">المميزات</a>
+<a href="#pricing">الأسعار</a>
+<a href="#about">عن JORDAN AI</a>
+
+</nav>
+
+<div class="nav-buttons">
+
+<button
+class="btn btn-login"
+onclick="openAuth('login')">
+تسجيل الدخول
+</button>
+
+<button
+class="btn btn-start"
+onclick="openAuth('signup')">
+🚀 ابدأ الآن
+</button>
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- =========================================
+     MAIN WEBSITE
+========================================= -->
+
+<main id="publicSite">
+
+<section
+class="hero"
+id="home">
+
+<div class="hero-content">
+
+<div class="badge">
+🇯🇴 وُلد في الأردن .. صُنع للعالم
+</div>
+
+<div class="hero-logo">
+JORDAN <span>AI</span>
+</div>
+
+<div class="hero-sublogo">
+الذكاء الاصطناعي للأعمال
+</div>
+
+<h1>
+حوّل فكرتك إلى
+<span>محتوى احترافي</span>
+</h1>
+
+<p class="hero-description">
+
+منصة ذكاء اصطناعي تساعدك على إنشاء
+الإعلانات والنصوص والأفكار والمحتوى
+التسويقي بطريقة أسرع وأسهل.
+
+</p>
+
+<div class="hero-buttons">
+
+<button
+class="main-btn"
+onclick="openAuth('signup')">
+🚀 ابدأ الآن مجاناً
+</button>
+
+<button
+class="secondary-btn"
+onclick="openAuth('login')">
+تسجيل الدخول
+</button>
+
+</div>
+
+<div class="made-jordan">
+🇯🇴 <strong>JORDAN AI</strong>
+— ذكاء من قلب الأردن
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section
+class="features"
+id="features">
+
+<div class="feature">
+
+<div class="feature-icon">
+⚡
+</div>
+
+<h3>
+سرعة فائقة
+</h3>
+
+<p>
+إنشاء المحتوى خلال ثوانٍ
+</p>
+
+</div>
+
+<div class="feature">
+
+<div class="feature-icon">
+🖼️
+</div>
+
+<h3>
+صور احترافية
+</h3>
+
+<p>
+تصاميم وأفكار بذكاء اصطناعي
+</p>
+
+</div>
+
+<div class="feature">
+
+<div class="feature-icon">
+✍️
+</div>
+
+<h3>
+نصوص تسويقية
+</h3>
+
+<p>
+محتوى جذاب ومقنع
+</p>
+
+</div>
+
+<div class="feature">
+
+<div class="feature-icon">
+🎯
+</div>
+
+<h3>
+محتوى مخصص
+</h3>
+
+<p>
+مناسب لنشاطك التجاري
+</p>
+
+</div>
+
+<div class="feature">
+
+<div class="feature-icon">
+🛡️
+</div>
+
+<h3>
+آمن وموثوق
+</h3>
+
+<p>
+حماية وحسابات آمنة
+</p>
+
+</div>
+
+</section>
+
+
+<!-- PRICING -->
+
+<section
+class="section"
+id="pricing">
+
+<div class="section-title">
+
+<div class="small">
+الاشتراكات
+</div>
+
+<h2>
+اختر خطتك
+</h2>
+
+<p>
+خطط تناسب الأفراد والمشاريع والشركات
+</p>
+
+</div>
+
+<div class="pricing">
+
+<div class="price-card">
+
+<h3>
+Free
+</h3>
+
+<div class="price">
+0
+<small>د.أ / شهرياً</small>
+</div>
+
+<ul>
+<li>✓ استخدام محدود</li>
+<li>✓ أدوات أساسية</li>
+<li>✓ Credits مجانية</li>
+</ul>
+
+<button
+class="price-button"
+onclick="openAuth('signup')">
+ابدأ مجاناً
+</button>
+
+</div>
+
+
+<div class="price-card">
+
+<h3>
+Starter
+</h3>
+
+<div class="price">
+5
+<small>د.أ / شهرياً</small>
+</div>
+
+<ul>
+<li>✓ Credits أكثر</li>
+<li>✓ أدوات إضافية</li>
+<li>✓ دعم أساسي</li>
+</ul>
+
+<button
+class="price-button"
+onclick="openAuth('signup')">
+اختيار الخطة
+</button>
+
+</div>
+
+
+<div class="price-card featured">
+
+<h3>
+Pro
+</h3>
+
+<div class="price">
+12
+<small>د.أ / شهرياً</small>
+</div>
+
+<ul>
+<li>✓ استخدام أكبر</li>
+<li>✓ أدوات احترافية</li>
+<li>✓ أولوية أعلى</li>
+</ul>
+
+<button
+class="price-button"
+onclick="openAuth('signup')">
+ابدأ Pro
+</button>
+
+</div>
+
+
+<div class="price-card">
+
+<h3>
+Business
+</h3>
+
+<div class="price">
+25
+<small>د.أ / شهرياً</small>
+</div>
+
+<ul>
+<li>✓ للشركات</li>
+<li>✓ Credits كبيرة</li>
+<li>✓ أدوات متقدمة</li>
+</ul>
+
+<button
+class="price-button"
+onclick="openAuth('signup')">
+ابدأ Business
+</button>
+
+</div>
+
+
+<div class="price-card">
+
+<h3>
+Agency
+</h3>
+
+<div class="price">
+50
+<small>د.أ / شهرياً</small>
+</div>
+
+<ul>
+<li>✓ للوكالات</li>
+<li>✓ استخدام ضخم</li>
+<li>✓ إدارة متعددة</li>
+</ul>
+
+<button
+class="price-button"
+onclick="openAuth('signup')">
+ابدأ Agency
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section
+class="section"
+id="about">
+
+<div class="section-title">
+
+<div class="small">
+JORDAN AI
+</div>
+
+<h2>
+ذكاء من قلب الأردن
+</h2>
+
+<p>
+منصة عربية للجيل الجديد من الأعمال
+</p>
+
+</div>
+
+</section>
+
+</main>
+
+
+<!-- =========================================
+     AUTH MODAL
+========================================= -->
+
+<div
+class="modal"
+id="authModal">
+
+<div class="modal-box">
+
+<div class="modal-header">
+
+<h2 id="authTitle">
+تسجيل الدخول
+</h2>
+
+<button
+class="close"
+onclick="closeAuth()">
+×
+</button>
+
+</div>
+
+<div
+class="form-message"
+id="authMessage">
+</div>
+
+<form
+id="authForm"
+onsubmit="handleAuth(event)">
+
+<div class="form-group">
+
+<label>
+البريد الإلكتروني
+</label>
+
+<input
+type="email"
+id="authEmail"
+required
+autocomplete="email">
+
+</div>
+
+<div class="form-group">
+
+<label>
+كلمة المرور
+</label>
+
+<input
+type="password"
+id="authPassword"
+required
+autocomplete="current-password">
+
+</div>
+
+<button
+class="form-submit"
+id="authSubmit"
+type="submit">
+
+تسجيل الدخول
+
+</button>
+
+</form>
+
+<div class="form-switch">
+
+<span id="switchText">
+ليس لديك حساب؟
+</span>
+
+<button
+onclick="toggleAuthMode()"
+id="switchButton">
+إنشاء حساب
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================
+     OWNER DASHBOARD
+========================================= -->
+
+<section
+id="ownerDashboard">
+
+<div class="owner-layout">
+
+
+<!-- SIDEBAR -->
+
+<aside class="owner-sidebar">
+
+<div class="owner-brand">
+
+<strong>
+JORDAN AI
+</strong>
+
+<span>
+👑 OWNER CONTROL
+</span>
+
+</div>
+
+<div class="owner-menu">
+
+<button
+class="active"
+onclick="showOwnerPage('overview',this)">
+📊 الرئيسية
+</button>
+
+<button
+onclick="showOwnerPage('users',this)">
+👥 المستخدمون
+</button>
+
+<button
+onclick="showOwnerPage('subscriptions',this)">
+💳 الاشتراكات
+</button>
+
+<button
+onclick="showOwnerPage('payments',this)">
+💰 المدفوعات
+</button>
+
+<button
+onclick="showOwnerPage('ai',this)">
+🤖 استخدام AI
+</button>
+
+<button
+onclick="showOwnerPage('security',this)">
+🛡️ الأمان
+</button>
+
+<button
+onclick="showOwnerPage('settings',this)">
+⚙️ الإعدادات
+</button>
+
+</div>
+
+</aside>
+
+
+<!-- MAIN -->
+
+<div class="owner-main">
+
+<div class="owner-topbar">
+
+<div>
+
+<h1 id="ownerPageTitle">
+لوحة تحكم Owner
+</h1>
+
+<p>
+إدارة JORDAN AI بالكامل
+</p>
+
+</div>
+
+<div class="owner-actions">
+
+<button
+class="owner-btn"
+onclick="refreshOwnerData()">
+🔄 تحديث
+</button>
+
+<button
+class="owner-btn red"
+onclick="logout()">
+تسجيل الخروج
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =================================
+     OVERVIEW
+================================= -->
+
+<div
+class="owner-page active"
+id="page-overview">
+
+<div class="owner-stats">
+
+<div class="owner-stat">
+
+<div class="icon">
+👥
+</div>
+
+<strong id="statUsers">
+0
+</strong>
+
+<span>
+إجمالي المستخدمين
+</span>
+
+</div>
+
+
+<div class="owner-stat">
+
+<div class="icon">
+🟢
+</div>
+
+<strong id="statActive">
+0
+</strong>
+
+<span>
+المستخدمون النشطون
+</span>
+
+</div>
+
+
+<div class="owner-stat">
+
+<div class="icon">
+💳
+</div>
+
+<strong id="statSubscriptions">
+0
+</strong>
+
+<span>
+الاشتراكات
+</span>
+
+</div>
+
+
+<div class="owner-stat">
+
+<div class="icon">
+💰
+</div>
+
+<strong id="statRevenue">
+0 د.أ
+</strong>
+
+<span>
+الإيرادات
+</span>
+
+</div>
+
+</div>
+
+
+<div class="owner-grid">
+
+<div class="owner-card">
+
+<h2>
+👥 آخر المستخدمين
+</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>البريد</th>
+<th>الدور</th>
+<th>التاريخ</th>
+</tr>
+
+</thead>
+
+<tbody id="recentUsers">
+
+<tr>
+<td colspan="3">
+جاري التحميل...
+</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<div class="owner-card">
+
+<h2>
+⚡ إجراءات سريعة
+</h2>
+
+<div class="quick-grid">
+
+<button
+class="quick"
+onclick="showOwnerPageByName('users')">
+👥 إدارة المستخدمين
+</button>
+
+<button
+class="quick"
+onclick="showOwnerPageByName('subscriptions')">
+💳 إدارة الاشتراكات
+</button>
+
+<button
+class="quick"
+onclick="showOwnerPageByName('payments')">
+💰 المدفوعات
+</button>
+
+<button
+class="quick"
+onclick="showOwnerPageByName('security')">
+🛡️ سجل الأمان
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =================================
+     USERS
+================================= -->
+
+<div
+class="owner-page"
+id="page-users">
+
+<div class="owner-card">
+
+<h2>
+👥 جميع المستخدمين
+</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>البريد الإلكتروني</th>
+<th>الدور</th>
+<th>الخطة</th>
+<th>الحالة</th>
+<th>تاريخ التسجيل</th>
+</tr>
+
+</thead>
+
+<tbody id="usersTable">
+
+<tr>
+<td colspan="5">
+جاري التحميل...
+</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =================================
+     SUBSCRIPTIONS
+================================= -->
+
+<div
+class="owner-page"
+id="page-subscriptions">
+
+<div class="owner-card">
+
+<h2>
+💳 الاشتراكات
+</h2>
+
+<div class="plan-grid">
+
+<div class="plan-box">
+Free
+<strong id="planFree">0</strong>
+<span>مشترك</span>
+</div>
+
+<div class="plan-box">
+Starter
+<strong id="planStarter">0</strong>
+<span>مشترك</span>
+</div>
+
+<div class="plan-box">
+Pro
+<strong id="planPro">0</strong>
+<span>مشترك</span>
+</div>
+
+<div class="plan-box">
+Business
+<strong id="planBusiness">0</strong>
+<span>مشترك</span>
+</div>
+
+<div class="plan-box">
+Agency
+<strong id="planAgency">0</strong>
+<span>مشترك</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =================================
+     PAYMENTS
+================================= -->
+
+<div
+class="owner-page"
+id="page-payments">
+
+<div class="owner-card">
+
+<h2>
+💰 المدفوعات
+</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>المستخدم</th>
+<th>المبلغ</th>
+<th>الخطة</th>
+<th>الحالة</th>
+<th>التاريخ</th>
+</tr>
+
+</thead>
+
+<tbody id="paymentsTable">
+
+<tr>
+<td colspan="5">
+لا توجد عمليات دفع حتى الآن
+</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =================================
+     AI
+================================= -->
+
+<div
+class="owner-page"
+id="page-ai">
+
+<div class="owner-stats">
+
+<div class="owner-stat">
+
+<div class="icon">
+🤖
+</div>
+
+<strong id="aiRequests">
+0
+</strong>
+
+<span>
+عمليات AI
+</span>
+
+</div>
+
+<div class="owner-stat">
+
+<div class="icon">
+⚡
+</div>
+
+<strong id="aiCredits">
+0
+</strong>
+
+<span>
+Credits مستخدمة
+</span>
+
+</div>
+
+<div class="owner-stat">
+
+<div class="icon">
+🖼️
+</div>
+
+<strong>
+0
+</strong>
+
+<span>
+صور مولدة
+</span>
+
+</div>
+
+<div class="owner-stat">
+
+<div class="icon">
+✍️
+</div>
+
+<strong>
+0
+</strong>
+
+<span>
+نصوص مولدة
+</span>
+
+</div>
+
+</div>
+
+<div class="owner-card">
+
+<h2>
+🤖 إحصائيات الذكاء الاصطناعي
+</h2>
+
+<p style="color:#777;line-height:2">
+
+هذه الصفحة جاهزة لربط عمليات AI الحقيقية
+وحساب Credits والاستهلاك عندما نربط
+Backend ومحرك الذكاء الاصطناعي.
+
+</p>
+
+</div>
+
+</div>
+
+
+<!-- =================================
+     SECURITY
+================================= -->
+
+<div
+class="owner-page"
+id="page-security">
+
+<div class="owner-card">
+
+<h2>
+🛡️ الأمان والنشاط
+</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>العملية</th>
+<th>المستخدم</th>
+<th>التاريخ</th>
+<th>الحالة</th>
+</tr>
+
+</thead>
+
+<tbody id="securityTable">
+
+<tr>
+<td colspan="4">
+لا توجد أحداث مسجلة
+</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =================================
+     SETTINGS
+================================= -->
+
+<div
+class="owner-page"
+id="page-settings">
+
+<div class="owner-card">
+
+<h2>
+⚙️ إعدادات النظام
+</h2>
+
+<div class="settings-list">
+
+<div class="setting">
+
+<div>
+<strong>
+حالة النظام
+</strong>
+
+<br>
+
+<span>
+الحالة العامة للمنصة
+</span>
+
+</div>
+
+<div class="status green">
+يعمل
+</div>
+
+</div>
+
+
+<div class="setting">
+
+<div>
+<strong>
+المصادقة
+</strong>
+
+<br>
+
+<span>
+Supabase Authentication
+</span>
+
+</div>
+
+<div class="status green">
+مفعلة
+</div>
+
+</div>
+
+
+<div class="setting">
+
+<div>
+<strong>
+قاعدة البيانات
+</strong>
+
+<br>
+
+<span>
+Supabase PostgreSQL
+</span>
+
+</div>
+
+<div class="status green">
+متصلة
+</div>
+
+</div>
+
+
+<div class="setting">
+
+<div>
+<strong>
+حماية Owner
+</strong>
+
+<br>
+
+<span>
+التحقق من role داخل profiles
+</span>
+
+</div>
+
+<div class="status gold">
+Owner
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TOAST -->
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* =====================================================
+   JORDAN AI - FIXED FRONTEND SCRIPT
+   إصلاح جميع أزرار الموقع + تسجيل الدخول + لوحة Owner
+===================================================== */
+
+const SUPABASE_URL = "https://fepskoypfwvwzebcqpas.supabase.co";
+const SUPABASE_ANON_KEY = "ضع_مفتاح_Anon_العام_هنا";
+
+let supabaseClient = null;
+let authMode = "login";
+let currentUser = null;
+
+if (window.supabase && SUPABASE_ANON_KEY && !SUPABASE_ANON_KEY.includes("ضع_مفتاح")) {
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+}
+
+function $(id) { return document.getElementById(id); }
+
+function toast(message) {
+    const el = $("toast");
+    if (!el) return;
+    el.textContent = message;
+    el.classList.add("show");
+    clearTimeout(window.__toastTimer);
+    window.__toastTimer = setTimeout(() => el.classList.remove("show"), 3500);
+}
+
+function scrollToSection(id) {
+    const el = $(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function openAuth(mode = "login") {
+    authMode = mode;
+    const modal = $("authModal");
+    if (!modal) return;
+    modal.classList.add("show");
+    updateAuthUI();
+    setTimeout(() => $("authEmail")?.focus(), 100);
+}
+
+function closeAuth() {
+    $("authModal")?.classList.remove("show");
+    clearAuthMessage();
+}
+
+function clearAuthMessage() {
+    const el = $("authMessage");
+    if (el) {
+        el.textContent = "";
+        el.className = "form-message";
+    }
+}
+
+function showAuthMessage(message, type = "error") {
+    const el = $("authMessage");
+    if (!el) return;
+    el.textContent = message;
+    el.className = "form-message " + type;
+}
+
+function updateAuthUI() {
+    const title = $("authTitle");
+    const submit = $("authSubmit");
+    const switchText = $("switchText");
+    const switchButton = $("switchButton");
+
+    if (authMode === "login") {
+        if (title) title.textContent = "تسجيل الدخول";
+        if (submit) submit.textContent = "تسجيل الدخول";
+        if (switchText) switchText.textContent = "ليس لديك حساب؟";
+        if (switchButton) switchButton.textContent = "إنشاء حساب";
+    } else {
+        if (title) title.textContent = "إنشاء حساب جديد";
+        if (submit) submit.textContent = "إنشاء الحساب";
+        if (switchText) switchText.textContent = "لديك حساب بالفعل؟";
+        if (switchButton) switchButton.textContent = "تسجيل الدخول";
+    }
+    clearAuthMessage();
+}
+
+function toggleAuthMode() {
+    authMode = authMode === "login" ? "signup" : "login";
+    updateAuthUI();
+}
+
+async function handleAuth(event) {
+    event.preventDefault();
+
+    const email = $("authEmail")?.value.trim();
+    const password = $("authPassword")?.value;
+    const submit = $("authSubmit");
+
+    if (!email || !password) {
+        showAuthMessage("أدخل البريد الإلكتروني وكلمة المرور.");
+        return;
+    }
+
+    if (!supabaseClient) {
+        showAuthMessage("Supabase غير مفعّل بعد. ضع مفتاح Anon العام داخل الملف ثم جرّب مرة أخرى.");
+        return;
+    }
+
+    if (submit) {
+        submit.disabled = true;
+        submit.textContent = authMode === "login" ? "جارٍ تسجيل الدخول..." : "جارٍ إنشاء الحساب...";
+    }
+
+    try {
+        let result;
+
+        if (authMode === "login") {
+            result = await supabaseClient.auth.signInWithPassword({ email, password });
+        } else {
+            result = await supabaseClient.auth.signUp({ email, password });
+        }
+
+        if (result.error) throw result.error;
+
+        if (authMode === "signup" && !result.data.session) {
+            showAuthMessage("تم إنشاء الحساب. تحقق من بريدك الإلكتروني ثم سجّل الدخول.", "success");
+            return;
+        }
+
+        currentUser = result.data.user;
+        closeAuth();
+        await openDashboardIfOwner();
+    } catch (error) {
+        console.error(error);
+        showAuthMessage(authErrorArabic(error));
+    } finally {
+        if (submit) {
+            submit.disabled = false;
+            updateAuthUI();
+        }
+    }
+}
+
+function authErrorArabic(error) {
+    const msg = String(error?.message || "");
+    if (msg.includes("Invalid login credentials")) return "البريد الإلكتروني أو كلمة المرور غير صحيحة.";
+    if (msg.includes("User already registered")) return "هذا البريد مسجل مسبقًا. سجّل الدخول بدلًا من إنشاء حساب جديد.";
+    if (msg.toLowerCase().includes("email not confirmed")) return "يجب تأكيد البريد الإلكتروني أولًا.";
+    if (msg.toLowerCase().includes("password")) return "كلمة المرور غير صالحة أو لا تحقق الشروط المطلوبة.";
+    return msg || "حدث خطأ غير متوقع. حاول مرة أخرى.";
+}
+
+async function openDashboardIfOwner() {
+    if (!currentUser && supabaseClient) {
+        const { data } = await supabaseClient.auth.getUser();
+        currentUser = data?.user || null;
+    }
+
+    if (!currentUser) {
+        toast("تم تسجيل الدخول، لكن لم يتم العثور على المستخدم.");
+        return;
+    }
+
+    let isOwner = false;
+
+    if (supabaseClient) {
+        try {
+            const { data: profile } = await supabaseClient
+                .from("profiles")
+                .select("role")
+                .eq("id", currentUser.id)
+                .maybeSingle();
+            isOwner = profile?.role === "owner" || profile?.role === "OWNER";
+        } catch (e) {
+            console.warn("Owner profile check failed:", e);
+        }
+    }
+
+    if (isOwner) {
+        showOwnerDashboard();
+        await refreshOwnerData();
+    } else {
+        toast("تم تسجيل الدخول بنجاح.");
+    }
+}
+
+function showOwnerDashboard() {
+    if ($("publicSite")) $("publicSite").style.display = "none";
+    if ($("mainHeader")) $("mainHeader").style.display = "none";
+    $("ownerDashboard")?.classList.add("show");
+    showOwnerPage("overview");
+}
+
+function hideOwnerDashboard() {
+    $("ownerDashboard")?.classList.remove("show");
+    if ($("publicSite")) $("publicSite").style.display = "block";
+    if ($("mainHeader")) $("mainHeader").style.display = "block";
+}
+
+function showOwnerPage(page, button) {
+    document.querySelectorAll(".owner-page").forEach(el => el.classList.remove("active"));
+    document.querySelectorAll(".owner-menu button").forEach(el => el.classList.remove("active"));
+
+    const target = $("page-" + page);
+    if (target) target.classList.add("active");
+    if (button) button.classList.add("active");
+
+    const titles = {
+        overview: "لوحة تحكم Owner",
+        users: "المستخدمون",
+        subscriptions: "الاشتراكات",
+        payments: "المدفوعات",
+        ai: "استخدام AI",
+        security: "الأمان والنشاط",
+        settings: "إعدادات النظام"
+    };
+    if ($("ownerPageTitle")) $("ownerPageTitle").textContent = titles[page] || "لوحة تحكم Owner";
+}
+
+function showOwnerPageByName(page) {
+    const button = [...document.querySelectorAll(".owner-menu button")]
+        .find(el => el.getAttribute("onclick")?.includes("'" + page + "'"));
+    showOwnerPage(page, button);
+}
+
+async function refreshOwnerData() {
+    if (!supabaseClient) {
+        toast("أضف مفتاح Supabase Anon أولًا.");
+        return;
+    }
+
+    try {
+        const [profiles, subscriptions, payments, ai] = await Promise.all([
+            supabaseClient.from("profiles").select("id,email,role,plan,created_at").order("created_at", { ascending: false }),
+            supabaseClient.from("subscriptions").select("id,user_id,plan,status,amount,created_at"),
+            supabaseClient.from("payments").select("id,user_id,amount,plan,status,created_at").order("created_at", { ascending: false }),
+            supabaseClient.from("ai_usage").select("id,user_id,credits,created_at")
+        ]);
+
+        if (profiles.error) throw profiles.error;
+
+        const users = profiles.data || [];
+        const subs = subscriptions.data || [];
+        const pays = payments.data || [];
+        const aiRows = ai.data || [];
+
+        setText("statUsers", users.length);
+        setText("statActive", users.filter(u => u.id).length);
+        setText("statSubscriptions", subs.filter(s => !s.status || s.status === "active").length);
+
+        const revenue = pays.reduce((sum, p) => sum + Number(p.amount || 0), 0);
+        setText("statRevenue", revenue.toFixed(2) + " د.أ");
+
+        renderUsers(users);
+        renderSubscriptions(subs);
+        renderPayments(pays, users);
+        setText("aiRequests", aiRows.length);
+        setText("aiCredits", aiRows.reduce((sum, row) => sum + Number(row.credits || 0), 0));
+    } catch (error) {
+        console.error("Owner data error:", error);
+        toast("تعذر تحميل بيانات لوحة التحكم. تأكد من أسماء جداول Supabase.");
+    }
+}
+
+function setText(id, value) {
+    const el = $(id);
+    if (el) el.textContent = value;
+}
+
+function safe(value) {
+    return String(value ?? "").replace(/[&<>\"']/g, ch => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "\"":"&quot;", "'":"&#039;" }[ch]));
+}
+
+function dateText(value) {
+    if (!value) return "—";
+    const d = new Date(value);
+    return Number.isNaN(d.getTime()) ? safe(value) : d.toLocaleDateString("ar-JO");
+}
+
+function renderUsers(users) {
+    const recent = $("recentUsers");
+    const table = $("usersTable");
+
+    if (recent) recent.innerHTML = users.slice(0, 8).map(u => `
+        <tr><td>${safe(u.email || "—")}</td><td>${safe(u.role || "user")}</td><td>${dateText(u.created_at)}</td></tr>
+    `).join("") || `<tr><td colspan="3">لا يوجد مستخدمون</td></tr>`;
+
+    if (table) table.innerHTML = users.map(u => `
+        <tr><td>${safe(u.email || "—")}</td><td>${safe(u.role || "user")}</td><td>${safe(u.plan || "Free")}</td><td>نشط</td><td>${dateText(u.created_at)}</td></tr>
+    `).join("") || `<tr><td colspan="5">لا يوجد مستخدمون</td></tr>`;
+}
+
+function renderSubscriptions(subs) {
+    const counts = { free: 0, starter: 0, pro: 0, business: 0, agency: 0 };
+    subs.forEach(s => {
+        const key = String(s.plan || "free").toLowerCase();
+        if (key in counts) counts[key]++;
+    });
+    setText("planFree", counts.free);
+    setText("planStarter", counts.starter);
+    setText("planPro", counts.pro);
+    setText("planBusiness", counts.business);
+    setText("planAgency", counts.agency);
+}
+
+function renderPayments(payments, users) {
+    const table = $("paymentsTable");
+    if (!table) return;
+    const names = new Map(users.map(u => [u.id, u.email]));
+    table.innerHTML = payments.map(p => `
+        <tr><td>${safe(names.get(p.user_id) || p.user_id || "—")}</td><td>${Number(p.amount || 0).toFixed(2)} د.أ</td><td>${safe(p.plan || "—")}</td><td>${safe(p.status || "—")}</td><td>${dateText(p.created_at)}</td></tr>
+    `).join("") || `<tr><td colspan="5">لا توجد عمليات دفع حتى الآن</td></tr>`;
+}
+
+async function logout() {
+    if (supabaseClient) await supabaseClient.auth.signOut();
+    currentUser = null;
+    hideOwnerDashboard();
+    toast("تم تسجيل الخروج.");
+}
+
+/* روابط القائمة تعمل كأزرار تنقل ناعمة */
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener("click", function(e) {
+        const id = this.getAttribute("href");
+        if (id && id.length > 1 && $(id.substring(1))) {
+            e.preventDefault();
+            scrollToSection(id.substring(1));
+        }
+    });
+});
+
+/* إغلاق نافذة الدخول عند الضغط خارجها */
+$("authModal")?.addEventListener("click", function(e) {
+    if (e.target === this) closeAuth();
+});
+
+/* زر ESC يغلق النوافذ */
+document.addEventListener("keydown", e => {
+    if (e.key === "Escape") closeAuth();
+});
+
+/* بدء الموقع */
+document.addEventListener("DOMContentLoaded", async () => {
+    if (!supabaseClient) console.warn("JORDAN AI: Supabase key is not configured yet.");
+
+    if (supabaseClient) {
+        const { data } = await supabaseClient.auth.getSession();
+        if (data?.session?.user) {
+            currentUser = data.session.user;
+            await openDashboardIfOwner();
+        }
+    }
+});
+
+/* يجعل الدوال متاحة لأزرار onclick الموجودة داخل HTML */
+window.openAuth = openAuth;
+window.closeAuth = closeAuth;
+window.toggleAuthMode = toggleAuthMode;
+window.handleAuth = handleAuth;
+window.showOwnerPage = showOwnerPage;
+window.showOwnerPageByName = showOwnerPageByName;
+window.refreshOwnerData = refreshOwnerData;
+window.logout = logout;
+window.toast = toast;
+</script>
+
+</body>
+</html>
